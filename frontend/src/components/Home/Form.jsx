@@ -7,7 +7,7 @@ const Form = () => {
         {/* Left */}
         <div className="flex h-full flex-col justify-between gap-10">
           <div>
-            <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl lg:text-6xl">
+            <h2 className="text-4xl font-medium leading-tight tracking-tight text-black sm:text-5xl lg:text-5xl">
               Can't wait to know more?
               <br />
               Let's talk!
