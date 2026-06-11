@@ -1,6 +1,5 @@
 import Hero from './Hero'
 import Footer from '../common/Footer.jsx'
-import Navbar from '../common/Navbar.jsx'
 import Ownthekey from './Ownthekey.jsx'
 import PossessionSoon from './PossessionSoon.jsx'
 import ExploreUnit from './ExploreUnit.jsx'
@@ -12,7 +11,6 @@ import Form from './Form.jsx'
 const Home = () => {
   return (
     <div className="">
-      <Navbar />
       <Hero />
       <Ownthekey />
       <PossessionSoon />
@@ -27,4 +25,3 @@ const Home = () => {
 }
 
 export default Home
-

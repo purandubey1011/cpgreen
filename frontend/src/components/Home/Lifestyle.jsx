@@ -1,5 +1,8 @@
 import React from "react";
+import { motion as Motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { Reveal, Stagger } from "../common/Motion";
+import { fadeUp } from "../../utils/motion";
 
 const amenities = [
   {
@@ -38,75 +41,61 @@ const amenities = [
 
 const Lifestyle = () => {
   return (
-    <section className="bg-[#f3f3f3] py-20">
-      <div className="mx-auto max-w-[1200px] px-6">
-        {/* Header */}
-        <div className="mb-12 flex items-center justify-between">
-          <h2 className="text-[58px] font-light leading-none tracking-[-2px] text-[#6d4635]">
+    <section className="bg-[#f3f3f3] py-14 md:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
+          <Reveal
+            as="h2"
+            className="max-w-3xl text-3xl font-light leading-tight tracking-tight text-[#6d4635] sm:text-4xl md:text-5xl lg:text-[58px]"
+          >
             Pick the lifestyle you want!
-          </h2>
+          </Reveal>
 
-          <button className="flex items-center gap-2 bg-[#6d4635] px-7 py-5 text-sm uppercase tracking-wide text-white transition hover:bg-[#5c3a2c]">
+          <Motion.a
+            href="/amenities"
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex min-h-12 w-fit items-center gap-2 bg-[#6d4635] px-5 py-4 text-xs uppercase tracking-wide text-white shadow-sm transition hover:bg-[#5c3a2c] hover:shadow-lg sm:px-7 sm:text-sm"
+          >
             Explore Amenities
-            <ChevronRight size={16} />
-          </button>
+            <ChevronRight size={16} className="transition group-hover:translate-x-1" />
+          </Motion.a>
         </div>
 
-        {/* Amenity Cards */}
-        <div className="space-y-5">
-          {amenities.map((item, index) => (
-            <div
-              key={index}
-              className="group relative h-[240px] overflow-hidden"
+        <Stagger className="space-y-4 md:space-y-5">
+          {amenities.map((item) => (
+            <Motion.article
+              key={item.title}
+              variants={fadeUp}
+              className="group relative min-h-[250px] overflow-hidden shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-xl sm:min-h-[280px] md:h-[240px] md:min-h-0"
             >
-              {/* Image */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.075]"
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-black/45" />
+              <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-black/80 via-black/40 to-transparent md:w-[55%]" />
+              <div className="absolute inset-y-0 right-0 hidden w-[35%] bg-gradient-to-l from-black/75 to-transparent md:block" />
 
-              {/* Left Overlay Gradient */}
-              <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-black/75 to-transparent" />
+              <div
+                className={`relative z-10 flex min-h-[250px] flex-col justify-between p-6 sm:min-h-[280px] sm:p-8 md:h-full md:min-h-0 ${
+                  item.align === "right" ? "md:items-end md:text-right" : ""
+                }`}
+              >
+                <h3 className="text-4xl font-light text-white sm:text-5xl md:text-[56px]">
+                  {item.title}
+                </h3>
 
-              {/* Right Overlay Gradient */}
-              <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-black/75 to-transparent" />
-
-              {item.align === "left" ? (
-                <>
-                  <div className="absolute left-10 top-8">
-                    <h3 className="text-[56px] font-light text-white">
-                      {item.title}
-                    </h3>
-                  </div>
-
-                  <div className="absolute bottom-8 left-10 max-w-[420px]">
-                    <p className="text-sm leading-relaxed text-white/90">
-                      {item.description}
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="absolute right-10 top-8">
-                    <h3 className="text-[56px] font-light text-white">
-                      {item.title}
-                    </h3>
-                  </div>
-
-                  <div className="absolute bottom-8 right-10 max-w-[380px] text-right">
-                    <p className="text-sm leading-relaxed text-white/90">
-                      {item.description}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
+                <p className="max-w-[420px] text-sm leading-relaxed text-white/90">
+                  {item.description}
+                </p>
+              </div>
+            </Motion.article>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

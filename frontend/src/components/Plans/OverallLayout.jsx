@@ -1,28 +1,34 @@
 import React from "react";
+import { AnimatedImage, Reveal } from "../common/Motion";
 
 const OverallLayout = () => {
   return (
-    <section className="bg-[#f3f3f3] py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h2 className="text-4xl font-light tracking-tight text-[#704633] md:text-5xl">
+    <section className="bg-[#f3f3f3] py-14 md:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-center md:justify-between">
+          <Reveal
+            as="h2"
+            className="text-3xl font-light tracking-tight text-[#704633] sm:text-4xl md:text-5xl"
+          >
             Overall Block Layout
-          </h2>
+          </Reveal>
 
-          <p className="text-lg font-light text-[#444] md:text-xl">
+          <Reveal
+            as="p"
+            className="text-base font-light text-[#444] md:text-xl"
+          >
             A bird's-eye view of your dream lifestyle.
-          </p>
+          </Reveal>
         </div>
 
-        {/* Layout Image */}
-        <div className="flex justify-center">
-          <img
+        <Reveal className="flex justify-center">
+          <AnimatedImage
             src="/plans/overall/bg.png"
             alt="Overall Block Layout"
-            className="w-full max-w-4xl object-contain"
+            wrapperClassName="w-full max-w-4xl"
+            className="w-full object-contain"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
